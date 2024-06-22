@@ -45,6 +45,14 @@ const handler = NextAuth({
       (token.userId = "dsdskn"), (token.type = "admin");
       return token;
     },
+    session:({
+        session,token,user
+    }:any)=>{
+        if(session&&session.user){
+            session.user.id=token.userId; // token.sub
+        }
+        return session;
+    }
   },
 });
 
