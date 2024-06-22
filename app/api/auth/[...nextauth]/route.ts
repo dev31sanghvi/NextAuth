@@ -15,6 +15,7 @@
 // }
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google"
 
 const handler = NextAuth({
   providers: [
@@ -36,6 +37,10 @@ const handler = NextAuth({
         };
       },
     }),
+    GoogleProvider({
+clientId:process.env.GOOGLE_CLIENT_ID || "",
+clientSecret:process.env.GOOGLE_CLIENT_SECRET || ""
+    })
   ],
   // should not be hardcoded , should be picked from .env file
   secret: process.env.NEXTAUTH_SECRET,
